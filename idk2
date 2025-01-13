@@ -1,0 +1,20 @@
+document.getElementById("submit-idea-form").addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const title = document.getElementById("idea-title").value;
+  const description = document.getElementById("idea-description").value;
+  const goal = document.getElementById("funding-goal").value;
+
+  const response = await fetch("http://localhost:3000/ideas", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ title, description, goal }),
+  });
+
+  if (response.ok) {
+    alert("Idea submitted successfully!");
+    document.getElementById("submit-idea-form").reset();
+  } else {
+    alert("Failed to submit idea.");
+  }
+});
