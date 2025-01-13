@@ -1,0 +1,20 @@
+document.addEventListener("DOMContentLoaded", async () => {
+  const response = await fetch("http://localhost:3000/ideas");
+  const ideas = await response.json();
+
+  const container = document.getElementById("ideas-container");
+  ideas.forEach((idea) => {
+    const ideaDiv = document.createElement("div");
+    ideaDiv.classList.add("idea-card");
+
+    ideaDiv.innerHTML = `
+      <h3>${idea.title}</h3>
+      <p>${idea.description}</p>
+      <p><strong>Funding Goal:</strong> $${idea.goal}</p>
+      <p><strong>Amount Raised:</strong> $${idea.raised}</p>
+      <progress value="${idea.raised}" max="${idea.goal}"></progress>
+    `;
+
+    container.appendChild(ideaDiv);
+  });
+});
