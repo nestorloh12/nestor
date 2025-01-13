@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invest in Ideas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Invest in Ideas</h1>
+    <p>Browse and invest in innovative projects!</p>
+  </header>
+
+  <main>
+    <section id="idea-form">
+      <h2>Submit Your Idea</h2>
+      <form id="submit-idea-form">
+        <input type="text" id="idea-title" placeholder="Idea Title" required>
+        <textarea id="idea-description" placeholder="Describe your idea" required></textarea>
+        <input type="number" id="funding-goal" placeholder="Funding Goal ($)" required>
+        <button type="submit">Submit Idea</button>
+      </form>
+    </section>
+
+    <section id="ideas-list">
+      <h2>Available Ideas</h2>
+      <div id="ideas-container"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
