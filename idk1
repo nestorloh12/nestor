@@ -1,0 +1,43 @@
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
+
+const app = express();
+const PORT = 3000;
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// MongoDB Connection
+mongoose.connect("mongodb://localhost:27017/investIdeas", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+const IdeaSchema = new mongoose.Schema({
+  title: String,
+  description: String,
+  goal: Number,
+  raised: Number,
+});
+
+const Idea = mongoose.model("Idea", IdeaSchema);
+
+// Routes
+app.get("/ideas", async (req, res) => {
+  const ideas = await Idea.find();
+  res.json(ideas);
+});
+
+app.post("/ideas", async (req, res) => {
+  const { title, description, goal } = req.body;
+  const newIdea = new Idea({ title, description, goal, raised: 0 });
+  await newIdea.save();
+  res.status(201).json(newIdea);
+});
+
+// Start Server
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
