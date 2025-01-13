@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Ideas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>View Current Ideas</h1>
+    <p>Explore the ideas submitted and their funding progress!</p>
+  </header>
+
+  <main>
+    <section id="ideas-overview">
+      <h2>Ideas and Funding Goals</h2>
+      <div id="ideas-container">
+        <!-- Ideas will be dynamically loaded here -->
+      </div>
+    </section>
+
+    <section>
+      <a href="Invest_in_Ideas.html" class="back-link">Submit Your Own Idea</a>
+    </section>
+  </main>
+
+  <script>
+    // Sample data for demonstration; replace with backend integration
+    const ideas = [
+      { title: "Eco-Friendly Packaging", description: "Reduce plastic waste with biodegradable alternatives.", goal: 10000, raised: 4500 },
+      { title: "Community Learning Hub", description: "Provide free educational resources for underprivileged kids.", goal: 15000, raised: 12000 },
+      { title: "Urban Rooftop Farming", description: "Create sustainable food sources on urban rooftops.", goal: 20000, raised: 8000 }
+    ];
+
+    const container = document.getElementById('ideas-container');
+
+    ideas.forEach(idea => {
+      const ideaDiv = document.createElement('div');
+      ideaDiv.classList.add('idea-card');
+
+      ideaDiv.innerHTML = `
+        <h3>${idea.title}</h3>
+        <p>${idea.description}</p>
+        <p><strong>Funding Goal:</strong> $${idea.goal}</p>
+        <p><strong>Amount Raised:</strong> $${idea.raised}</p>
+        <progress value="${idea.raised}" max="${idea.goal}"></progress>
+      `;
+
+      container.appendChild(ideaDiv);
+    });
+  </script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+    header {
+      background-color: #007bff;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+    main {
+      padding: 2rem;
+    }
+    .idea-card {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+      padding: 1rem;
+    }
+    progress {
+      width: 100%;
+      height: 20px;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 2rem;
+      text-decoration: none;
+      color: #007bff;
+      font-weight: bold;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</body>
+</html>
